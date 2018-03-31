@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { List, Checkbox, Alert } from "antd";
 import styled from "styled-components";
-
+import { delete_cookie } from "sfcookies";
+import { Button } from "antd";
 const ListStyled = styled(List)`
   max-width: 373px;
   margin: 10px auto !important;
@@ -9,10 +10,14 @@ const ListStyled = styled(List)`
 const CheckboxStyled = styled(Checkbox)`
   padding-right: 10px !important;
 `;
+const Div = styled.div`
+  text-align: center;
+`;
 
-let flag = false;
+let indexI = 0;
 class ListItem extends Component {
   constructor(props) {
+    indexI = indexI + 1;
     super(props);
     this.state = {
       flagClick: false,
@@ -30,29 +35,41 @@ class ListItem extends Component {
   render() {
     return (
       <div>
-        {this.props.items != 0 ? (
-          <ListStyled
-            size="small"
-            header={<div>ToDo List</div>}
-            bordered
-            dataSource={this.props.items}
-            renderItem={item => (
-              <List.Item>
-                <CheckboxStyled
-                  onChange={() => {
-                    this.demo(item);
-                  }}
-                />
-                {item}
-              </List.Item>
-            )}
-          />
+        {console.log("this.props.state ", this.props)}
+        {this.props.items !== 0 ? (
+          <div>
+            <ListStyled
+              size="small"
+              header={<div>ToDo List</div>}
+              bordered
+              dataSource={this.props.items}
+              renderItem={item => (
+                <List.Item>
+                  <CheckboxStyled
+                    onChange={() => {
+                      this.demo(item);
+                    }}
+                  />
+                  {item}
+                </List.Item>
+              )}
+            />
+          </div>
         ) : (
           <div />
         )}
         {this.state.flagClick && (
           <Alert message="Task Completed" type="success" />
         )}
+        <Div>
+          <Button
+            onClick={() => {
+              delete_cookie("tasksCookie");
+            }}
+          >
+            Delete Cookies
+          </Button>
+        </Div>
       </div>
     );
   }

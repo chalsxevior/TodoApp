@@ -7,6 +7,7 @@
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
     "react-scripts": "1.1.1",
+    "sfcookies": "^1.0.2",
     "styled-components": "^3.2.5"
   },
   "scripts": {
