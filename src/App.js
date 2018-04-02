@@ -53,6 +53,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <title>MyTodoApp</title>
         <Row gutter={16}>
           <Col>
             <form className="App" onSubmit={this.onSubmit}>
